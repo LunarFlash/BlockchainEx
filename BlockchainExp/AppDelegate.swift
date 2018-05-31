@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Blockchain Starter Project
+//  BlockchainEx
 //
 //  Created by Terry Wang on 4/29/18.
 //  Copyright © 2018 Vento. All rights reserved.
