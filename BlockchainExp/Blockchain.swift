@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Representation of a blockchain
 class Blockchain {
-    // Enter the logic for the Blockchain here
+
 }
