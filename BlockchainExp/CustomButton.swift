@@ -2,8 +2,8 @@
 //  CustomButton.swift
 //  Views
 //
-//  Created by Sai Kambampati on 12/8/17.
-//  Copyright © 2017 SaiApps. All rights reserved.
+//  Created by Terry Wang on 12/8/17.
+//  Copyright © 2017 Vento. All rights reserved.
 //
 
 import UIKit

@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Blockchain Starter Project
 //
-//  Created by Sai Kambampati on 4/29/18.
-//  Copyright © 2018 AppCoda. All rights reserved.
+//  Created by Terry Wang on 4/29/18.
+//  Copyright © 2018 Vento. All rights reserved.
 //
 
 import UIKit

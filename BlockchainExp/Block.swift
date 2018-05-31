@@ -2,8 +2,8 @@
 //  Block.swift
 //  Blockchain Starter Project
 //
-//  Created by Sai Kambampati on 5/4/18.
-//  Copyright © 2018 AppCoda. All rights reserved.
+//  Created by Terry Wang on 5/4/18.
+//  Copyright © 2018 Vento. All rights reserved.
 //
 
 import UIKit
