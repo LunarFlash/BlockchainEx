@@ -14,6 +14,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var redAmount: UITextField!
     @IBOutlet weak var redLabel: UILabel!
     @IBOutlet weak var blueLabel: UILabel!
+
+    let firstAccount = 1065
+    let secondAccount = 0217
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
