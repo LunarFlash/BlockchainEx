@@ -28,28 +28,42 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        transaction(from: "0000", to: "\(firstAccount)", amount: 50, type: .genesis)
+        transaction(from: "\(firstAccount)", to: "\(secondAccount)", amount: 10, type: .normal)
     }
 
     @IBAction func redMine(_ sender: Any) {
-        
+        transaction(from: "0000", to: "\(firstAccount)", amount: 100, type: .normal)
+        print("New block mined by: \(firstAccount)")
+        chainState()
     }
     
     @IBAction func blueMine(_ sender: Any) {
-        
+        transaction(from: "0000", to: "\(secondAccount)", amount: 100, type: .normal)
+        print("New block mined by: \(secondAccount)")
+        chainState()
     }
     
     @IBAction func redSend(_ sender: Any) {
-        
+        if redAmount.text == "" {
+            present(invalidAlert, animated: true, completion: nil)
+        } else {
+            transaction(from: "\(firstAccount)", to: "\(secondAccount)", amount: Int(redAmount.text!)!, type: .normal)
+            print("\(redAmount.text!) BTC sent from \(firstAccount) to \(secondAccount)")
+            chainState()
+            redAmount.text = ""
+        }
     }
     
     @IBAction func blueSend(_ sender: Any) {
-        
+        if blueAmount.text == "" {
+            present(invalidAlert, animated: true, completion: nil)
+        } else {
+            transaction(from: "\(secondAccount)", to: "\(firstAccount)", amount: Int(blueAmount.text!)!, type: .normal)
+            print("\(blueAmount.text!)! BTC sent from \(secondAccount) to: \(firstAccount)")
+            chainState()
+            blueAmount.text = ""
+        }
     }
     
 }
@@ -60,7 +74,7 @@ extension ViewController {
     /// - Parameter to:" The account the amount is transfered to
     /// - Parameter amount: The amount being transfered
     /// - Parameter type: The type of transaction: "genesis" or "normal"
-    func transaction(from: String, to: String, amount: Int, type: String) {
+    func transaction(from: String, to: String, amount: Int, type: TransactionType) {
         if accounts[from] == nil {
             present(invalidAlert, animated: true, completion: nil)
             return
@@ -70,22 +84,22 @@ extension ViewController {
         } else {
             accounts.updateValue(amount, forKey: to)
         }
-        if type == "genesis" {
+        if type == .genesis {
             bitcoinChain.createGenesisBlock(data: "From: \(from); To: \(to); Amount: \(amount)BTC")
-        } else if type == "normal" {
+        } else if type == .normal {
             bitcoinChain.createBlock(data: "From: \(from); To: \(to); Amount: \(amount)BTC")
         }
+    }
 
-        /// Print all the transactions in this blockchain
-        func chainState() {
-            for i in 0...bitcoinChain.chain.count - 1 {
-                print("\tBlock: \(bitcoinChain.chain[i].index!)\n\tHash: \(bitcoinChain.chain[i].hash!)\n\tPreviousHash: \(bitcoinChain.chain[i].previousHash!)\n\tData: \(bitcoinChain.chain[i].data!)")
-            }
-            redLabel.text = "Balance: \(accounts[String(describing: firstAccount)]!) BTC"
-            blueLabel.text = "Balance: \(accounts[String(describing: secondAccount)]!) BTC"
-            print(accounts)
-            print(chainValidity())
+    /// Print all the transactions in this blockchain
+    func chainState() {
+        for i in 0...bitcoinChain.chain.count - 1 {
+            print("\tBlock: \(bitcoinChain.chain[i].index!)\n\tHash: \(bitcoinChain.chain[i].hash!)\n\tPreviousHash: \(bitcoinChain.chain[i].previousHash!)\n\tData: \(bitcoinChain.chain[i].data!)")
         }
+        redLabel.text = "Balance: \(accounts[String(describing: firstAccount)]!) BTC"
+        blueLabel.text = "Balance: \(accounts[String(describing: secondAccount)]!) BTC"
+        print(accounts)
+        print(chainValidity())
     }
 
     /// Validate a chain - check if previous block's hash matches against current block's reference.'

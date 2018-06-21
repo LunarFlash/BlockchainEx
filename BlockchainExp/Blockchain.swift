@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum TransactionType {
+    case genesis
+    case normal
+}
+
 /// Representation of a blockchain
 class Blockchain {
     /// A conected chain of Blocks
