@@ -81,7 +81,7 @@ extension ViewController {
             present(invalidAlert, animated: true, completion: nil)
             return
         } else {
-            accounts.updateValue(amount, forKey: to)
+            accounts.updateValue(accounts[from]! - amount, forKey: from)
         }
 
         if accounts[to] == nil {
