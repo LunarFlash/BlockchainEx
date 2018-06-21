@@ -83,6 +83,13 @@ extension ViewController {
         } else {
             accounts.updateValue(amount, forKey: to)
         }
+
+        if accounts[to] == nil {
+            accounts.updateValue(amount, forKey: to)
+        } else {
+            accounts.updateValue(accounts[to]! + amount, forKey: to)
+        }
+
         if type == .genesis {
             bitcoinChain.createGenesisBlock(data: "From: \(from); To: \(to); Amount: \(amount)BTC")
         } else if type == .normal {
