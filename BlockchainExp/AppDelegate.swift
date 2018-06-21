@@ -1,7 +1,7 @@
 //
 //  AppDelegate.swift
 //  BlockchainEx
-//
+//  https://www.appcoda.com/blockchain-introduction/
 //  Created by Terry Wang on 4/29/18.
 //  Copyright © 2018 Vento. All rights reserved.
 //

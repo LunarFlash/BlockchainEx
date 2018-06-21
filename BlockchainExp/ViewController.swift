@@ -75,6 +75,21 @@ extension ViewController {
         } else if type == "normal" {
             bitcoinChain.createBlock(data: "From: \(from); To: \(to); Amount: \(amount)BTC")
         }
+
+        /// Print all the transactions in this blockchain
+        func chainState() {
+            for i in 0...bitcoinChain.chain.count - 1 {
+                print("\tBlock: \(bitcoinChain.chain[i].index!)\n\tHash: \(bitcoinChain.chain[i].hash!)\n\tPreviousHash: \(bitcoinChain.chain[i].previousHash!)\n\tData: \(bitcoinChain.chain[i].data!)")
+            }
+            redLabel.text = "Balance: \(accounts[String(describing: firstAccount)]!) BTC"
+            blueLabel.text = "Balance: \(accounts[String(describing: secondAccount)]!) BTC"
+            print(accounts)
+            print(chainValidity())
+        }
+    }
+
+    func chainValidity() -> String {
+        return ""
     }
 }
 
