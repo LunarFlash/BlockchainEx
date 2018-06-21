@@ -23,11 +23,10 @@ class ViewController: UIViewController {
     let invalidAlert = UIAlertController(title: "Invalid Transaction",
                                          message: "Please check the details of your transaction as we were unable to process this.",
                                          preferredStyle: .alert)
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        invalidAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         transaction(from: "0000", to: "\(firstAccount)", amount: 50, type: .genesis)
         transaction(from: "\(firstAccount)", to: "\(secondAccount)", amount: 10, type: .normal)
     }
