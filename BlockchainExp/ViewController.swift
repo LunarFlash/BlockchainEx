@@ -88,8 +88,15 @@ extension ViewController {
         }
     }
 
+    /// Validate a chain - check if previous block's hash matches against current block's reference.'
     func chainValidity() -> String {
-        return ""
+        var isChainValid = true
+        for i in 1...bitcoinChain.chain.count - 1 {
+            if bitcoinChain.chain[i].previousHash != bitcoinChain.chain[i-1].hash {
+                isChainValid = false
+            }
+        }
+        return "Chain is valid: \(isChainValid)"
     }
 }
 
